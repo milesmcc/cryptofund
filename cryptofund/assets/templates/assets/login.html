@@ -1,0 +1,34 @@
+{% extends "assets/base.html" %}
+
+{% block title %}
+Login to Alioshka
+{% endblock %}
+
+{% block description %}
+Alioshka requires that all website visitors authenticate as investors before proceeding.
+{% endblock %}
+
+{% block content %}
+<br>
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <h3>Authentication</h3>
+        <p>All visitors are required to authenticate using a valid account access code before viewing fund information.</p>
+        <br>
+        <form action="{% url 'login' %}" method="post">
+            {% csrf_token %}
+            {{ form }}
+            <br>
+            <button type="submit" value="Authenticate" class="btn btn-outline-primary">Authenticate</button>
+        </form>
+        <br>
+        {% if error %}
+        <div class="alert alert-danger" role="alert">
+            {{error}}
+        </div>
+        {% endif %}
+    </div>
+</div>
+<br>
+{% endblock %}
